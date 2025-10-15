@@ -1,5 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms;
 
 public class ControlJugador : MonoBehaviour
 {
@@ -15,7 +17,11 @@ public class ControlJugador : MonoBehaviour
     public float sencibilidadCamara = 5f;
     private float rotacionYcam, rotacionXcam;
 
+    [Header("Modo Apuntar")]
+    public Transform posicionCamara;
+
     private Rigidbody rb;
+    float gatilloL, gatilloR;
 
     void Awake()
     {
@@ -29,13 +35,13 @@ public class ControlJugador : MonoBehaviour
 
     void Update()
     {
+        Apuntar();
 
-        MovimientoJugador();
         Saltar();
 
-        MovimientoCamara();
-
         ResetearPosision();
+
+        Gatillos();
     }
 
     private void MovimientoCamara()
@@ -95,11 +101,40 @@ public class ControlJugador : MonoBehaviour
         return Physics.Raycast(jugador.position, Vector3.down, 1.55f);
     }
 
-    public void Disparo()
+    public void Apuntar()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire2") || gatilloL > 0)
         {
-            Physics.Raycast(jugador.position, Vector3.forward, 10f);
+            transformCamara.position = posicionCamara.position;
+            Disparar();
+        }
+        else
+        {
+            MovimientoJugador();
+            MovimientoCamara();
+        }
+    }
+
+    public void Disparar()
+    {
+        if (gatilloR > 0)
+        {
+            print("Fuego");
+        }
+    }
+
+    public void Gatillos()
+    {
+        if (Gamepad.current != null)
+        {
+            var gamepad = Gamepad.current;
+            gatilloL = gamepad.leftTrigger.ReadValue();   // 0..1
+            gatilloR = gamepad.rightTrigger.ReadValue();
+        }
+        else
+        {
+            gatilloL = 0;
+            gatilloR = 0;
         }
     }
 }
