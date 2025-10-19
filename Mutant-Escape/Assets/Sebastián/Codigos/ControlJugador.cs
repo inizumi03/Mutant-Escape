@@ -25,15 +25,23 @@ public class ControlJugador : MonoBehaviour
     [Header("Funcionamiento Del Arma")]
     public GameObject bala;
     public Transform mira;
-    public int municion;
+    public int municion, recarga;
     public float cadencia;
     private float espera;
+
+    [Header("Efectos Mutageno 1")]
+    public float alteracionVelocidadMutUno;
+    public float tiempoDeActivacionMutUno;
+
+    [Header("Efectos Mutageno 2")]
+    public float alteracionVelocidadMutDos;
+    public float tiempoDeActivacionMutDos;
 
     [Header("Extras")]
     public Transform arma;
 
     private Rigidbody rb;
-    float gatilloL, gatilloR;
+    float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, mutacion;
 
     void Awake()
     {
@@ -43,6 +51,9 @@ public class ControlJugador : MonoBehaviour
         rotacionXcam = transform.eulerAngles.x;
 
         Cursor.visible = false;
+
+        alteracionVelocidadN = 1;
+        alterecionVelocidadP = 1;
     }
 
     void Update()
@@ -53,6 +64,7 @@ public class ControlJugador : MonoBehaviour
         Gatillos();
         Disparar();
         Apuntar();
+        Recargar();
 
         Saltar();
 
@@ -89,7 +101,7 @@ public class ControlJugador : MonoBehaviour
         Quaternion rotacionJugador = Quaternion.Euler(0f, rotacionYcam, 0f);
         Vector3 direccion = rotacionJugador * direccionInput;
 
-        Vector3 velocidadDireccionada = direccion * velocidad;
+        Vector3 velocidadDireccionada = direccion * ((velocidad * alteracionVelocidadN) * alterecionVelocidadP);
         rb.velocity = new Vector3(velocidadDireccionada.x, rb.velocity.y, velocidadDireccionada.z);
 
         if (direccionInput.sqrMagnitude > 0.01f)
@@ -156,5 +168,57 @@ public class ControlJugador : MonoBehaviour
             gatilloL = 0;
             gatilloR = 0;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Mutageno 1") && mutacion == 0)
+        {
+            Alteraciones(alteracionVelocidadMutUno, .5f, false, tiempoDeActivacionMutUno);
+            mutacion = 1;
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Mutageno 2") && mutacion == 0)
+        {
+            Alteraciones(-alteracionVelocidadMutDos, 2, true, tiempoDeActivacionMutDos);
+            mutacion = 2;
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    void Alteraciones(float valor, float escala = 0, bool negativo = false, float tiempo = 0)
+    {
+        if (negativo)
+            alteracionVelocidadN += valor;
+        else
+            alterecionVelocidadP += valor;
+
+        if (escala > 0)
+        {
+            rb.velocity += Vector3.up * 2 * escala;
+            transform.localScale *= escala;
+        }
+
+        if (tiempo > 0)
+        {
+            CancelInvoke("TemporizadorDeMutacion");
+            Invoke("TemporizadorDeMutacion", tiempo);
+        }
+    }
+
+    void TemporizadorDeMutacion()
+    {
+        if (mutacion == 1)
+            Alteraciones(-alteracionVelocidadMutUno, 2f);
+        else if (mutacion == 2)
+            Alteraciones(alteracionVelocidadMutDos, .5f, true);
+
+        mutacion = 0;
+    }
+
+    void Recargar()
+    {
+        if (Input.GetButton("Recargar"))
+            municion = recarga;
     }
 }

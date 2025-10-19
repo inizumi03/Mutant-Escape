@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bala
+  - Mutageno 1
+  - Mutageno 2
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - Bala
   - Water
   - UI
-  - 
-  - 
+  - Mutageno 1
+  - Mutageno 2
   - 
   - 
   - 

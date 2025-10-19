@@ -21,7 +21,6 @@ public class Bala : MonoBehaviour
 
     void Destruir()
     {
-        print("Hola");
         CancelInvoke("Destuir");
         Destroy(gameObject);
     }
