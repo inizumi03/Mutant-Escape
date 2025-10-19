@@ -16,16 +16,7 @@ public class Bala : MonoBehaviour
     private void Update()
     {
         transform.position += transform.forward * velocidad * Time.deltaTime;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Destruir();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        Destruir();
+        Colicion();
     }
 
     void Destruir()
@@ -33,5 +24,11 @@ public class Bala : MonoBehaviour
         print("Hola");
         CancelInvoke("Destuir");
         Destroy(gameObject);
+    }
+
+    void Colicion()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, transform.localScale.z / 2))
+            Destruir();
     }
 }
