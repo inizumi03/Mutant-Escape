@@ -145,7 +145,10 @@ public class ControlJugador : MonoBehaviour
     {
         if ((gatilloR > 0 || Input.GetButton("Fire1")) && (municion > 0 && espera <= 0))
         {
-            //jugador.LookAt(new Vector3(transformCamara.position.x, jugador.position.y, transformCamara.position.z));
+            Vector3 camEuler = transformCamara.rotation.eulerAngles;
+            Quaternion targetRot = Quaternion.Euler(0f, camEuler.y, 0f);
+            rb.MoveRotation(targetRot);
+
             Instantiate(bala, mira.position, mira.rotation);
             espera = cadencia;
             municion--;
