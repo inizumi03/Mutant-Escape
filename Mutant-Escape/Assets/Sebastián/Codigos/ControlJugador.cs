@@ -104,7 +104,7 @@ public class ControlJugador : MonoBehaviour
         Vector3 velocidadDireccionada = direccion * ((velocidad * alteracionVelocidadN) * alterecionVelocidadP);
         rb.velocity = new Vector3(velocidadDireccionada.x, rb.velocity.y, velocidadDireccionada.z);
 
-        if (direccionInput.sqrMagnitude > 0.01f)
+        if (direccionInput.sqrMagnitude > 0.01f && !(gatilloR > 0 || Input.GetButton("Fire1")))
         {
             Quaternion anguloObjetivo = Quaternion.LookRotation(direccion, Vector3.up);
             Quaternion rotacion = Quaternion.Slerp(rb.rotation, anguloObjetivo, velocidadRotacion * Time.deltaTime);
@@ -147,9 +147,9 @@ public class ControlJugador : MonoBehaviour
         {
             Vector3 camEuler = transformCamara.rotation.eulerAngles;
             Quaternion targetRot = Quaternion.Euler(0f, camEuler.y, 0f);
-            rb.MoveRotation(targetRot);
 
-            Instantiate(bala, mira.position, mira.rotation);
+            StartCoroutine(ShootAfterRotate(targetRot));
+
             espera = cadencia;
             municion--;
         }
@@ -225,4 +225,17 @@ public class ControlJugador : MonoBehaviour
         if (Input.GetButton("Recargar"))
             municion = recarga;
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private System.Collections.IEnumerator ShootAfterRotate(Quaternion targetRot)
+    {
+        rb.MoveRotation(targetRot);            
+        yield return new WaitForFixedUpdate();    
+        Instantiate(bala, mira.position, mira.rotation);
+    }
+
 }
