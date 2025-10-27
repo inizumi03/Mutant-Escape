@@ -145,7 +145,7 @@ public class ControlJugador : MonoBehaviour
     {
         if ((gatilloR > 0 || Input.GetButton("Fire1")) && (municion > 0 && espera <= 0))
         {
-            jugador.LookAt(new Vector3(transformCamara.position.x, jugador.position.y, transformCamara.position.z));
+            //jugador.LookAt(new Vector3(transformCamara.position.x, jugador.position.y, transformCamara.position.z));
             Instantiate(bala, mira.position, mira.rotation);
             espera = cadencia;
             municion--;
