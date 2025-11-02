@@ -7,6 +7,8 @@ TagManager:
   - Bala
   - Mutageno 1
   - Mutageno 2
+  - Jugador
+  - Enemigo
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - Mutageno 1
   - Mutageno 2
-  - 
-  - 
+  - Jugador
+  - Enemigo
   - 
   - 
   - 

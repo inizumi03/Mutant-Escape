@@ -10,12 +10,20 @@ public class ComportamientoEnemigo : MonoBehaviour
     public float sampleMaxDistance = 1;
     public float intervaloDeBusqueda = 5;
     public float distanciaDeBusqueda = 10;
+    public float distanciaDetencion;
 
     [Header("Extras")]
     public Transform jugador;
+    public GameObject forma;
 
     NavMeshAgent agent;
     float timer;
+    bool jugadorDetectado;
+
+    private void OnEnable()
+    {
+        jugadorDetectado = false;
+    }
 
     private void Awake()
     {
@@ -29,17 +37,25 @@ public class ComportamientoEnemigo : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0f)
+
+        if (jugadorDetectado)
         {
-            Vector3 target;
-            if (TryGetRandomPoint(transform.position, distanciaDeBusqueda, out target))
+            PerseguirJugador();
+        }
+        else
+        {
+            if (timer <= 0f)
             {
-                agent.SetDestination(target);
+                Vector3 target;
+                if (MovimientoAleatorio(transform.position, distanciaDeBusqueda, out target))
+                {
+                    agent.SetDestination(target);
+                }
             }
         }
     }
 
-    bool TryGetRandomPoint(Vector3 center, float radius, out Vector3 result)
+    bool MovimientoAleatorio(Vector3 center, float radius, out Vector3 result)
     {
         Vector3 randomDir = Random.insideUnitSphere * radius;
         Vector3 candidate = center + randomDir;
@@ -56,4 +72,33 @@ public class ComportamientoEnemigo : MonoBehaviour
         return false;
     }
 
+    void PerseguirJugador()
+    {
+        int mask = LayerMask.GetMask("Default", "Jugador");
+        Vector3 origen = transform.position + Vector3.up;
+        Vector3 direccion = (jugador.position - origen).normalized;
+        RaycastHit hit;
+        bool golpeo = Physics.Raycast(origen, direccion, out hit, distanciaDetencion, mask, QueryTriggerInteraction.Ignore);
+
+        if (golpeo)
+        {
+            if (hit.collider.CompareTag("Jugador"))
+                agent.stoppingDistance = distanciaDetencion;
+            else
+                agent.stoppingDistance = 0;
+        }
+        else
+            agent.stoppingDistance = 0;
+
+        agent.SetDestination(jugador.position);
+        forma.transform.LookAt(jugador);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Jugador"))
+        {
+            jugadorDetectado = true;
+        }
+    }
 }
