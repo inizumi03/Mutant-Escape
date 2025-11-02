@@ -15,18 +15,16 @@ public class ComportamientoEnemigo : MonoBehaviour
     [Header("Extras")]
     public Transform jugador;
     public GameObject forma;
+    public SphereCollider trigger;
 
     NavMeshAgent agent;
     float timer;
-    bool jugadorDetectado;
-
-    private void OnEnable()
-    {
-        jugadorDetectado = false;
-    }
+    static bool jugadorDetectado;
 
     private void Awake()
     {
+        jugadorDetectado = false;
+
         agent = GetComponent<NavMeshAgent>();
 
         agent.speed = velocidad;
@@ -78,7 +76,7 @@ public class ComportamientoEnemigo : MonoBehaviour
         Vector3 origen = transform.position + Vector3.up;
         Vector3 direccion = (jugador.position - origen).normalized;
         RaycastHit hit;
-        bool golpeo = Physics.Raycast(origen, direccion, out hit, distanciaDetencion, mask, QueryTriggerInteraction.Ignore);
+        bool golpeo = Physics.Raycast(origen + transform.forward, direccion, out hit, distanciaDetencion - 1, mask, QueryTriggerInteraction.Ignore);
 
         if (golpeo)
         {
@@ -98,6 +96,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Jugador"))
         {
+            trigger.enabled = false;
             jugadorDetectado = true;
         }
     }
