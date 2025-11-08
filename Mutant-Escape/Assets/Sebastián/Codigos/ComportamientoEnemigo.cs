@@ -12,6 +12,14 @@ public class ComportamientoEnemigo : MonoBehaviour
     public float distanciaDeBusqueda = 10;
     public float distanciaDetencion;
 
+    [Header("Disparar")]
+    public GameObject bala;
+    public Transform mira;
+    public int limiteMaximoBalas;
+    public float cadencia;
+    int balasDisparadas;
+    float tiempoEspera;
+
     [Header("Extras")]
     public Transform jugador;
     public GameObject forma;
@@ -34,6 +42,7 @@ public class ComportamientoEnemigo : MonoBehaviour
 
     private void Update()
     {
+        mira.LookAt(jugador);
         timer -= Time.deltaTime;
 
         if (jugadorDetectado)
@@ -81,12 +90,27 @@ public class ComportamientoEnemigo : MonoBehaviour
         if (golpeo)
         {
             if (hit.collider.CompareTag("Jugador"))
+            {
                 agent.stoppingDistance = distanciaDetencion;
+                
+                tiempoEspera -= Time.deltaTime;
+
+                if (tiempoEspera < 0)
+                    Disparar();
+            }
             else
+            {
                 agent.stoppingDistance = 0;
+                tiempoEspera = Random.Range(.5f, 1.5f);
+                balasDisparadas = 0;
+            }
         }
         else
+        {
             agent.stoppingDistance = 0;
+            tiempoEspera = Random.Range(.5f, 1.5f);
+            balasDisparadas = 0;
+        }
 
         agent.SetDestination(jugador.position);
         forma.transform.LookAt(jugador);
@@ -99,5 +123,19 @@ public class ComportamientoEnemigo : MonoBehaviour
             trigger.enabled = false;
             jugadorDetectado = true;
         }
+    }
+
+    void Disparar()
+    {
+        Instantiate(bala, mira.position, mira.rotation);
+        balasDisparadas += 1 + Random.Range(0, 4);
+
+        if (balasDisparadas >= limiteMaximoBalas)
+        {
+            tiempoEspera = Random.Range(.5f, 1.5f);
+            balasDisparadas = 0;
+        }
+        else
+            tiempoEspera = cadencia;
     }
 }
