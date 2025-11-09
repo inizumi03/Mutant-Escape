@@ -17,6 +17,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     public Transform mira;
     public int limiteMaximoBalas;
     public float cadencia;
+    public float interbaloDisparo;
     int balasDisparadas;
     float tiempoEspera;
 
@@ -48,6 +49,19 @@ public class ComportamientoEnemigo : MonoBehaviour
         if (jugadorDetectado)
         {
             PerseguirJugador();
+
+            if (agent.stoppingDistance > 0)
+            {
+                tiempoEspera -= Time.deltaTime;
+
+                if (tiempoEspera < 0)
+                    Disparar();
+            }
+            else
+            {
+                tiempoEspera = Random.Range(interbaloDisparo - .5f, interbaloDisparo + .5f);
+                balasDisparadas = 0;
+            }
         }
         else
         {
@@ -85,7 +99,7 @@ public class ComportamientoEnemigo : MonoBehaviour
         Vector3 origen = transform.position + Vector3.up;
         Vector3 direccion = (jugador.position - origen).normalized;
         RaycastHit hit;
-        bool golpeo = Physics.Raycast(origen + transform.forward, direccion, out hit, distanciaDetencion - 1, mask, QueryTriggerInteraction.Ignore);
+        bool golpeo = Physics.SphereCast(origen + transform.forward, .25f, direccion, out hit, distanciaDetencion - 1, mask, QueryTriggerInteraction.Ignore);
 
         if (golpeo)
         {
@@ -93,23 +107,23 @@ public class ComportamientoEnemigo : MonoBehaviour
             {
                 agent.stoppingDistance = distanciaDetencion;
                 
-                tiempoEspera -= Time.deltaTime;
+                //tiempoEspera -= Time.deltaTime;
 
-                if (tiempoEspera < 0)
-                    Disparar();
+                //if (tiempoEspera < 0)
+                //    Disparar();
             }
             else
             {
                 agent.stoppingDistance = 0;
-                tiempoEspera = Random.Range(.5f, 1.5f);
-                balasDisparadas = 0;
+                //tiempoEspera = Random.Range(.5f, 1.5f);
+                //balasDisparadas = 0;
             }
         }
         else
         {
             agent.stoppingDistance = 0;
-            tiempoEspera = Random.Range(.5f, 1.5f);
-            balasDisparadas = 0;
+            //tiempoEspera = Random.Range(.5f, 1.5f);
+            //balasDisparadas = 0;
         }
 
         agent.SetDestination(jugador.position);
