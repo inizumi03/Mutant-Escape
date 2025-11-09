@@ -11,7 +11,6 @@ public class ComportamientoEnemigo : MonoBehaviour
     public float sampleMaxDistance = 1;
     public float intervaloDeBusqueda = 5;
     public float distanciaDeBusqueda = 10;
-    public float distanciaDetencion;
 
     [Header("Disparar")]
     public GameObject bala;
@@ -28,6 +27,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     public Transform jugador;
     public GameObject forma;
     public SphereCollider trigger;
+    public float distanciaDetencion;
 
     NavMeshAgent agent;
     float timer;
