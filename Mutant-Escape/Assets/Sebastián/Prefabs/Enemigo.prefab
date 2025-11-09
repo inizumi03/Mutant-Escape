@@ -74,7 +74,7 @@ MonoBehaviour:
   sampleMaxDistance: 1
   intervaloDeBusqueda: 5
   distanciaDeBusqueda: 25
-  bala: {fileID: 276064297509332365, guid: 8053936e76279ea418e76e71286205b1, type: 3}
+  bala: {fileID: 276064297509332365, guid: e564e99dde4d6d04a8915fa9f9b2b83c, type: 3}
   mira: {fileID: 5810656662527155377}
   limiteMaximoBalas: 4
   cadencia: 0.1

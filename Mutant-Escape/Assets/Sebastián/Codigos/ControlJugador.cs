@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class ControlJugador : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class ControlJugador : MonoBehaviour
     [Header("Extras")]
     public Transform arma;
     public int vida;
+    public Slider barraVida;
 
     [Header("Extras")]
     public Animator animator;
@@ -60,6 +62,8 @@ public class ControlJugador : MonoBehaviour
         alteracionVelocidadN = 1;
         alterecionVelocidadP = 1;
         vidaActual = vida;
+        barraVida.maxValue = vida;
+        barraVida.value = vidaActual;
     }
 
     void Update()
@@ -197,7 +201,10 @@ public class ControlJugador : MonoBehaviour
             other.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Bala Enemigo"))
+        {
             vidaActual--;
+            barraVida.value = vidaActual;
+        }
     }
 
     void Alteraciones(float valor, float escala = 0, bool negativo = false, float tiempo = 0)
