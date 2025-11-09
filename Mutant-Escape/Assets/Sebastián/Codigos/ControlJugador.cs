@@ -192,7 +192,7 @@ public class ControlJugador : MonoBehaviour
             mutacion = 2;
             other.gameObject.SetActive(false);
         }
-        else if (other.gameObject.CompareTag("Bala"))
+        else if (other.gameObject.CompareTag("Bala Enemigo"))
             vidaActual--;
     }
 

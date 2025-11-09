@@ -37,6 +37,11 @@ public class ComportamientoEnemigo : MonoBehaviour
     public delegate void CargarceEnespera(GameObject enemigo);
     static public event CargarceEnespera enviar;
 
+    private void OnEnable()
+    {
+        vidaActual = vida;
+    }
+
     private void OnDisable()
     {
         enviar.Invoke(gameObject);
@@ -89,6 +94,15 @@ public class ComportamientoEnemigo : MonoBehaviour
         }
 
         Desactivar();
+
+        if (jugadorDetectado)
+        {
+            trigger.enabled = false;
+        }
+        else
+        {
+            trigger.enabled = true;
+        }
     }
 
     bool MovimientoAleatorio(Vector3 center, float radius, out Vector3 result)
@@ -134,7 +148,6 @@ public class ComportamientoEnemigo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Jugador"))
         {
-            trigger.enabled = false;
             jugadorDetectado = true;
         }
         if (other.gameObject.CompareTag("Bala"))
