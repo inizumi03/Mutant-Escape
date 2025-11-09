@@ -3018,6 +3018,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo
       objectReference: {fileID: 0}
+    - target: {fileID: 1463111696449763468, guid: d1967d4f2238bb641b603811b884b42c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4003350901324830385, guid: d1967d4f2238bb641b603811b884b42c,
         type: 3}
       propertyPath: bala
