@@ -8,15 +8,15 @@ public class Bala : MonoBehaviour
     [Header("Parametros")]
     public float velocidad, tiempoDeVida;
 
+    Rigidbody rb;
+
     private void Start()
     {
-        Invoke("Destruir", tiempoDeVida);
-    }
+        rb = GetComponent<Rigidbody>();
 
-    private void Update()
-    {
-        transform.position += transform.forward * velocidad * Time.deltaTime;
-        Colicion();
+        rb.velocity = transform.forward * velocidad;
+
+        Invoke("Destruir", tiempoDeVida);
     }
 
     void Destruir()
@@ -25,9 +25,8 @@ public class Bala : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Colicion()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Physics.Raycast(transform.position, transform.forward, transform.localScale.z / 2))
-            Destruir();
+        Destruir();
     }
 }

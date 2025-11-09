@@ -1454,6 +1454,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007296980}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1149881585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1588667191423936258, guid: fa93bff37ad685044841ac4ce52ac1ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 8250346461588959327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267313152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,12 +2175,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435663208}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1466220171 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8980528675951045531, guid: fa93bff37ad685044841ac4ce52ac1ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 8250346461588959327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1497801466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &1908516301
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2847,9 +2847,12 @@ MonoBehaviour:
   distanciaDetencion: 25
   bala: {fileID: 276064297509332365, guid: 8053936e76279ea418e76e71286205b1, type: 3}
   mira: {fileID: 285542751}
-  limiteMaximoBalas: 0
+  limiteMaximoBalas: 4
   cadencia: 0.1
-  jugador: {fileID: 1466220171}
+  interbaloDisparo: 1
+  desvio: 0
+  vida: 5
+  jugador: {fileID: 1149881585}
   forma: {fileID: 1305019904}
   trigger: {fileID: 1908516302}
 --- !u!195 &1908516304
@@ -3074,7 +3077,10 @@ MonoBehaviour:
   mira: {fileID: 1838559608}
   limiteMaximoBalas: 4
   cadencia: 0.1
-  jugador: {fileID: 1466220171}
+  interbaloDisparo: 1
+  desvio: 0
+  vida: 5
+  jugador: {fileID: 1149881585}
   forma: {fileID: 63375974}
   trigger: {fileID: 2028862656}
 --- !u!136 &2028862655

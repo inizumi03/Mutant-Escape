@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,10 +19,12 @@ public class ComportamientoEnemigo : MonoBehaviour
     public int limiteMaximoBalas;
     public float cadencia;
     public float interbaloDisparo;
+    public float desvio;
     int balasDisparadas;
     float tiempoEspera;
 
     [Header("Extras")]
+    public int vida;
     public Transform jugador;
     public GameObject forma;
     public SphereCollider trigger;
@@ -29,6 +32,15 @@ public class ComportamientoEnemigo : MonoBehaviour
     NavMeshAgent agent;
     float timer;
     static bool jugadorDetectado;
+    int vidaActual;
+
+    public delegate void CargarceEnespera(GameObject enemigo);
+    static public event CargarceEnespera enviar;
+
+    private void OnDisable()
+    {
+        enviar.Invoke(gameObject);
+    }
 
     private void Awake()
     {
@@ -39,11 +51,12 @@ public class ComportamientoEnemigo : MonoBehaviour
         agent.speed = velocidad;
 
         timer = 1 * Random.Range(0.0f, 1.0f);
+
+        vidaActual = vida;
     }
 
     private void Update()
     {
-        mira.LookAt(jugador);
         timer -= Time.deltaTime;
 
         if (jugadorDetectado)
@@ -74,6 +87,8 @@ public class ComportamientoEnemigo : MonoBehaviour
                 }
             }
         }
+
+        Desactivar();
     }
 
     bool MovimientoAleatorio(Vector3 center, float radius, out Vector3 result)
@@ -104,27 +119,12 @@ public class ComportamientoEnemigo : MonoBehaviour
         if (golpeo)
         {
             if (hit.collider.CompareTag("Jugador"))
-            {
                 agent.stoppingDistance = distanciaDetencion;
-                
-                //tiempoEspera -= Time.deltaTime;
-
-                //if (tiempoEspera < 0)
-                //    Disparar();
-            }
             else
-            {
                 agent.stoppingDistance = 0;
-                //tiempoEspera = Random.Range(.5f, 1.5f);
-                //balasDisparadas = 0;
-            }
         }
         else
-        {
             agent.stoppingDistance = 0;
-            //tiempoEspera = Random.Range(.5f, 1.5f);
-            //balasDisparadas = 0;
-        }
 
         agent.SetDestination(jugador.position);
         forma.transform.LookAt(jugador);
@@ -137,10 +137,14 @@ public class ComportamientoEnemigo : MonoBehaviour
             trigger.enabled = false;
             jugadorDetectado = true;
         }
+        if (other.gameObject.CompareTag("Bala"))
+            vidaActual--;
     }
 
     void Disparar()
     {
+        mira.LookAt(PuntoOvjetivo());
+
         Instantiate(bala, mira.position, mira.rotation);
         balasDisparadas += 1 + Random.Range(0, 4);
 
@@ -151,5 +155,22 @@ public class ComportamientoEnemigo : MonoBehaviour
         }
         else
             tiempoEspera = cadencia;
+    }
+
+    void Desactivar()
+    {
+        if (vidaActual <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    Vector3 PuntoOvjetivo()
+    {
+        Vector3 pocicion = jugador.position;
+
+        pocicion += (Vector3.right * Random.Range(-desvio, desvio)) + (Vector3.forward * Random.Range(-desvio, desvio));
+
+        return pocicion;
     }
 }

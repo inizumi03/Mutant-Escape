@@ -39,9 +39,11 @@ public class ControlJugador : MonoBehaviour
 
     [Header("Extras")]
     public Transform arma;
+    public int vida;
 
     private Rigidbody rb;
     float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, mutacion;
+    int vidaActual;
 
     void Awake()
     {
@@ -54,6 +56,7 @@ public class ControlJugador : MonoBehaviour
 
         alteracionVelocidadN = 1;
         alterecionVelocidadP = 1;
+        vidaActual = vida;
     }
 
     void Update()
@@ -69,6 +72,7 @@ public class ControlJugador : MonoBehaviour
         Saltar();
 
         ResetearPosision();
+        CondicionDeDerrota();
     }
 
     private void MovimientoCamara()
@@ -188,6 +192,8 @@ public class ControlJugador : MonoBehaviour
             mutacion = 2;
             other.gameObject.SetActive(false);
         }
+        else if (other.gameObject.CompareTag("Bala"))
+            vidaActual--;
     }
 
     void Alteraciones(float valor, float escala = 0, bool negativo = false, float tiempo = 0)
@@ -238,4 +244,11 @@ public class ControlJugador : MonoBehaviour
         Instantiate(bala, mira.position, mira.rotation);
     }
 
+    void CondicionDeDerrota()
+    {
+        if (vidaActual <= 0)
+        {
+
+        }
+    }
 }
