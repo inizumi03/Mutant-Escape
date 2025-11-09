@@ -29,6 +29,10 @@ public class ComportamientoEnemigo : MonoBehaviour
     public SphereCollider trigger;
     public float distanciaDetencion;
 
+    [Header("Extras")]
+    public Animator animator;
+    public string aniJugadorDetectado;
+
     NavMeshAgent agent;
     float timer;
     static bool jugadorDetectado;
@@ -94,6 +98,7 @@ public class ComportamientoEnemigo : MonoBehaviour
         }
 
         Desactivar();
+        ControlDeAnimacion();
 
         if (jugadorDetectado)
         {
@@ -185,5 +190,10 @@ public class ComportamientoEnemigo : MonoBehaviour
         pocicion += (Vector3.right * Random.Range(-desvio, desvio)) + (Vector3.forward * Random.Range(-desvio, desvio));
 
         return pocicion;
+    }
+
+    void ControlDeAnimacion()
+    {
+        animator.SetBool(aniJugadorDetectado, jugadorDetectado);
     }
 }
