@@ -479,7 +479,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jugador
       value: 
-      objectReference: {fileID: 1149881585}
+      objectReference: {fileID: 664092841}
     - target: {fileID: 9059355176054669072, guid: d1967d4f2238bb641b603811b884b42c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -663,7 +663,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jugador
       value: 
-      objectReference: {fileID: 1149881585}
+      objectReference: {fileID: 664092841}
     - target: {fileID: 9059355176054669072, guid: d1967d4f2238bb641b603811b884b42c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -979,6 +979,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643840921}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &664092841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1588667191423936258, guid: fa93bff37ad685044841ac4ce52ac1ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 8250346461588959327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &681342206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1002,7 +1008,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jugador
       value: 
-      objectReference: {fileID: 1149881585}
+      objectReference: {fileID: 664092841}
     - target: {fileID: 9059355176054669072, guid: d1967d4f2238bb641b603811b884b42c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1465,12 +1471,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007296980}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1149881585 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1588667191423936258, guid: fa93bff37ad685044841ac4ce52ac1ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 8250346461588959327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267313152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3033,7 +3033,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jugador
       value: 
-      objectReference: {fileID: 1149881585}
+      objectReference: {fileID: 664092841}
     - target: {fileID: 9059355176054669072, guid: d1967d4f2238bb641b603811b884b42c,
         type: 3}
       propertyPath: m_LocalPosition.x
