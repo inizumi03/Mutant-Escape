@@ -19,9 +19,6 @@ public class ControlJugador : MonoBehaviour
     private float rotacionYcam, rotacionXcam;
     public float limiteInferiro, limiteSuperior;
 
-    [Header("Modo Apuntar")]
-    public Camera cam;
-
     [Header("Funcionamiento Del Arma")]
     public GameObject bala;
     public Transform mira;
@@ -40,6 +37,12 @@ public class ControlJugador : MonoBehaviour
     [Header("Extras")]
     public Transform arma;
     public int vida;
+
+    [Header("Extras")]
+    public Animator animator;
+    public string aniVelocidadXZ;
+    public string aniVelocidadY;
+    public string aniDisparando;
 
     private Rigidbody rb;
     float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, mutacion;
@@ -73,6 +76,7 @@ public class ControlJugador : MonoBehaviour
 
         ResetearPosision();
         CondicionDeDerrota();
+        ControlDeAnimacion();
     }
 
     private void MovimientoCamara()
@@ -250,5 +254,12 @@ public class ControlJugador : MonoBehaviour
         {
 
         }
+    }
+
+    void ControlDeAnimacion()
+    {
+        animator.SetFloat(aniVelocidadXZ, math.abs(rb.velocity.x) + math.abs(rb.velocity.z));
+        animator.SetFloat(aniVelocidadY, math.abs(rb.velocity.y));
+        animator.SetBool(aniDisparando, gatilloR > 0 || Input.GetButton("Fire1"));
     }
 }

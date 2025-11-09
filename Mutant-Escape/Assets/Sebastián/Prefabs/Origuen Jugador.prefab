@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9a08067edb24040818000e64cc25f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jugador: {fileID: 8070619779094120717}
+  jugador: {fileID: 1588667191423936258}
   velocidad: 5
   velocidadRotacion: 10
   fuerzaDeSalto: 5
@@ -331,7 +331,6 @@ MonoBehaviour:
   sencibilidadCamara: 2.5
   limiteInferiro: 25
   limiteSuperior: 45
-  cam: {fileID: 1959917516263018000}
   bala: {fileID: 276064297509332365, guid: 8053936e76279ea418e76e71286205b1, type: 3}
   mira: {fileID: 5035036593406817778}
   municion: 50
@@ -343,6 +342,10 @@ MonoBehaviour:
   tiempoDeActivacionMutDos: 10
   arma: {fileID: 5035036593406817778}
   vida: 0
+  animator: {fileID: 3902055216993839285}
+  aniVelocidadXZ: VelocidadXZ
+  aniVelocidadY: VelocidadY
+  aniDisparando: Disparando
 --- !u!54 &8514768052143864963
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -633,44 +636,17 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5035036593406817778}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7954680395699053174, guid: 7ce9c4dde145c534d9f8429057efd66d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1983463095248027417}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ce9c4dde145c534d9f8429057efd66d, type: 3}
+--- !u!95 &3902055216993839285 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2524575894246431092, guid: 7ce9c4dde145c534d9f8429057efd66d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1526714698139054529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8070619779094120717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7291155173619513548, guid: 7ce9c4dde145c534d9f8429057efd66d,
     type: 3}
   m_PrefabInstance: {fileID: 1526714698139054529}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8884275234523698103 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7954680395699053174, guid: 7ce9c4dde145c534d9f8429057efd66d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1526714698139054529}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1983463095248027417
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8884275234523698103}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 0.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.4, z: 0.05}
