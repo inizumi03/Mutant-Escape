@@ -13,7 +13,10 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
+    public void menu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void VerInstrucciones()
     {
         MenuPanel.SetActive(false);
