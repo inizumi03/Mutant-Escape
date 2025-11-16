@@ -64,6 +64,13 @@ public class ControlJugador : MonoBehaviour
         vidaActual = vida;
         barraVida.maxValue = vida;
         barraVida.value = vidaActual;
+
+        Trampa.Activar += Trampas;
+    }
+
+    private void OnDestroy()
+    {
+        Trampa.Activar -= Trampas;
     }
 
     void Update()
@@ -268,5 +275,10 @@ public class ControlJugador : MonoBehaviour
         animator.SetFloat(aniVelocidadXZ, math.abs(rb.velocity.x) + math.abs(rb.velocity.z));
         animator.SetFloat(aniVelocidadY, math.abs(rb.velocity.y));
         animator.SetBool(aniDisparando, gatilloR > 0 || Input.GetButton("Fire1"));
+    }
+
+    void Trampas(int daño, int indice)
+    {
+        vidaActual -= daño;
     }
 }
