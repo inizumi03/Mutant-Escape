@@ -39,6 +39,7 @@ public class ControlJugador : MonoBehaviour
     public Transform arma;
     public int vida;
     public Slider barraVida;
+    public GameObject CanvasDerrota;
 
     [Header("Extras")]
     public Animator animator;
@@ -52,6 +53,8 @@ public class ControlJugador : MonoBehaviour
 
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
 
         rotacionYcam = transform.eulerAngles.y;
@@ -266,7 +269,14 @@ public class ControlJugador : MonoBehaviour
     {
         if (vidaActual <= 0)
         {
-
+            CanvasDerrota.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else { 
+            CanvasDerrota.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
