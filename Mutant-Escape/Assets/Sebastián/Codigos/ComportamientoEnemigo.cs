@@ -19,6 +19,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     public float cadencia;
     public float interbaloDisparo;
     public float desvio;
+    public float correcionDeDesbio;
     int balasDisparadas;
     float tiempoEspera;
 
@@ -29,7 +30,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     public SphereCollider trigger;
     public float distanciaDetencion;
 
-    [Header("Extras")]
+    [Header("Animacion")]
     public Animator animator;
     public string aniJugadorDetectado;
 
@@ -67,6 +68,8 @@ public class ComportamientoEnemigo : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
+
+        CorrejirDesvio();
 
         if (jugadorDetectado)
         {
@@ -195,5 +198,13 @@ public class ComportamientoEnemigo : MonoBehaviour
     void ControlDeAnimacion()
     {
         animator.SetBool(aniJugadorDetectado, jugadorDetectado);
+    }
+
+    void CorrejirDesvio()
+    {
+        if (desvio > 0)
+            desvio -= Time.deltaTime * correcionDeDesbio;
+        else
+            desvio = 0;
     }
 }

@@ -41,7 +41,7 @@ public class ControlJugador : MonoBehaviour
     public Slider barraVida;
     public GameObject CanvasDerrota;
 
-    [Header("Extras")]
+    [Header("Animacion")]
     public Animator animator;
     public string aniVelocidadXZ;
     public string aniVelocidadY;
@@ -53,6 +53,8 @@ public class ControlJugador : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
@@ -269,14 +271,10 @@ public class ControlJugador : MonoBehaviour
     {
         if (vidaActual <= 0)
         {
+            Time.timeScale = 0;
             CanvasDerrota.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-        else { 
-            CanvasDerrota.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 

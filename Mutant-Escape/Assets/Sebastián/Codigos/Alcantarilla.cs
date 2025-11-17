@@ -12,12 +12,10 @@ public class Alcantarilla : MonoBehaviour
     {
         if (!mutageno.activeSelf && other.gameObject.CompareTag("Jugador"))
         {
-            //ganar
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
             GanarCanvas.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            
         }
     }
 }

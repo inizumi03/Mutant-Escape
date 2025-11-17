@@ -80,6 +80,7 @@ MonoBehaviour:
   cadencia: 0.1
   interbaloDisparo: 1
   desvio: 1.5
+  correcionDeDesbio: 0.1
   vida: 5
   jugador: {fileID: 0}
   forma: {fileID: 536931560980916451}

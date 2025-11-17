@@ -2431,6 +2431,7 @@ Transform:
   - {fileID: 1642051624}
   - {fileID: 330519066}
   - {fileID: 1205171918}
+  - {fileID: 1566872194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &632957522 stripped
@@ -5757,6 +5758,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: acido
       objectReference: {fileID: 0}
+    - target: {fileID: 3283048141641902332, guid: a942700235a500c48bac510901d433d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5106838596873064236, guid: a942700235a500c48bac510901d433d0,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5942,8 +5948,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6051181017973189276, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051181017973189276, guid: fa93bff37ad685044841ac4ce52ac1ec,
+        type: 3}
       propertyPath: m_TargetGraphic
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051181017973189276, guid: fa93bff37ad685044841ac4ce52ac1ec,
+        type: 3}
+      propertyPath: m_Colors.m_FadeDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6830450257144209073, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
@@ -5963,17 +5979,17 @@ PrefabInstance:
     - target: {fileID: 6830450257144209073, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5731
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6830450257144209073, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.8596501
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6830450257144209073, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5731
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6830450257144209073, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
@@ -7187,6 +7203,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172082517}
   m_CullTransparentMesh: 1
+--- !u!1001 &1186628373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 629116035}
+    m_Modifications:
+    - target: {fileID: 3018187648053270011, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_Name
+      value: Mutajeno 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1638083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1990541
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.947155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02800820d3402bb43ab8590a512bdfbb, type: 3}
 --- !u!4 &1205171918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 514523640014863985, guid: 96ccd313877b439428df3669b0e83582,
@@ -8144,6 +8228,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1926301621}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1566872194 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4813360433946353369, guid: 02800820d3402bb43ab8590a512bdfbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1186628373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1578664556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8489,6 +8579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: acido (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283048141641902332, guid: a942700235a500c48bac510901d433d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5106838596873064236, guid: a942700235a500c48bac510901d433d0,
         type: 3}
@@ -10805,7 +10900,7 @@ PrefabInstance:
     - target: {fileID: 3018187648053270011, guid: 49db1b57758582941a51ab05fd09357d,
         type: 3}
       propertyPath: m_Name
-      value: Erlenmeyer_flask with water (8)
+      value: Mutajeno 1
       objectReference: {fileID: 0}
     - target: {fileID: 4813360433946353369, guid: 49db1b57758582941a51ab05fd09357d,
         type: 3}
