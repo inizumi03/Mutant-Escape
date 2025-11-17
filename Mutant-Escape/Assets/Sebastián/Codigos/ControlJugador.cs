@@ -40,6 +40,8 @@ public class ControlJugador : MonoBehaviour
     public int vida;
     public Slider barraVida;
     public GameObject CanvasDerrota;
+    public bool[] mutacion;
+    public float[] tempMut;
 
     [Header("Animacion")]
     public Animator animator;
@@ -48,7 +50,7 @@ public class ControlJugador : MonoBehaviour
     public string aniDisparando;
 
     private Rigidbody rb;
-    float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, mutacion;
+    float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN;
     int vidaActual;
 
     void Awake()
@@ -93,6 +95,10 @@ public class ControlJugador : MonoBehaviour
         ResetearPosision();
         CondicionDeDerrota();
         ControlDeAnimacion();
+
+        TemporizadorDeMutacion();
+
+        barraVida.value = vidaActual;
     }
 
     private void MovimientoCamara()
@@ -200,26 +206,27 @@ public class ControlJugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Mutageno 1") && mutacion == 0)
+        if (other.gameObject.CompareTag("Mutageno 1") && mutacion[0] == false)
         {
-            Alteraciones(alteracionVelocidadMutUno, .5f, false, tiempoDeActivacionMutUno);
-            mutacion = 1;
+            Alteraciones(alteracionVelocidadMutUno, .5f, false);
+            mutacion[0] = true;
+            tempMut[0] = tiempoDeActivacionMutUno;
             other.gameObject.SetActive(false);
         }
-        else if (other.gameObject.CompareTag("Mutageno 2") && mutacion == 0)
+        else if (other.gameObject.CompareTag("Mutageno 2") && mutacion[1] == false)
         {
-            Alteraciones(-alteracionVelocidadMutDos, 2, true, tiempoDeActivacionMutDos);
-            mutacion = 2;
+            Alteraciones(-alteracionVelocidadMutDos, 2, true);
+            mutacion[1] = true;
+            tempMut[1] = tiempoDeActivacionMutDos;
             other.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Bala Enemigo"))
         {
             vidaActual -= 5;
-            barraVida.value = vidaActual;
         }
     }
 
-    void Alteraciones(float valor, float escala = 0, bool negativo = false, float tiempo = 0)
+    void Alteraciones(float valor, float escala = 0, bool negativo = false)
     {
         if (negativo)
             alteracionVelocidadN += valor;
@@ -231,22 +238,31 @@ public class ControlJugador : MonoBehaviour
             rb.velocity += Vector3.up * 2 * escala;
             transform.localScale *= escala;
         }
-
-        if (tiempo > 0)
-        {
-            CancelInvoke("TemporizadorDeMutacion");
-            Invoke("TemporizadorDeMutacion", tiempo);
-        }
     }
 
     void TemporizadorDeMutacion()
     {
-        if (mutacion == 1)
-            Alteraciones(-alteracionVelocidadMutUno, 2f);
-        else if (mutacion == 2)
-            Alteraciones(alteracionVelocidadMutDos, .5f, true);
+        if (mutacion[0] == true)
+        {
+            tempMut[0] -= Time.deltaTime;
 
-        mutacion = 0;
+            if (tempMut[0] < 0)
+            {
+                mutacion[0] = false;
+                Alteraciones(-alteracionVelocidadMutUno, 2f);
+            }
+        }
+
+        if (mutacion[1] == true)
+        {
+            tempMut[1] -= Time.deltaTime;
+
+            if (tempMut[1] < 0)
+            {
+                mutacion[1] = false;
+                Alteraciones(alteracionVelocidadMutDos, .5f, true);
+            }
+        }
     }
 
     void Recargar()

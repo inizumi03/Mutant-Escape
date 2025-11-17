@@ -631,6 +631,11 @@ MonoBehaviour:
   arma: {fileID: 5035036593406817778}
   vida: 50
   barraVida: {fileID: 6051181017973189276}
+  CanvasDerrota: {fileID: 0}
+  mutacion: 0000
+  tempMut:
+  - 0
+  - 0
   animator: {fileID: 3902055216993839285}
   aniVelocidadXZ: VelocidadXZ
   aniVelocidadY: VelocidadY
