@@ -243,7 +243,7 @@ public class ControlJugador : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Bala Enemigo"))
         {
-            vidaActual -= 5;
+            vidaActual -= 1;
         }
         else if (other.gameObject.CompareTag("Municion"))
         {
