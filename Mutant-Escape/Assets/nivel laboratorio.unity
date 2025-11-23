@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2087,6 +2087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!1001 &233381881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9672,6 +9673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!1001 &659138530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10869,6 +10871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!4 &881100930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3415897995249409588, guid: 11747fb57c8349c4f9aa518df82ba8b8,
@@ -16557,6 +16560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!4 &1322520521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6638749870499186040, guid: ebb63b71f46467d408bd1ad9c02e3b1d,
@@ -16992,6 +16996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!1 &1420916238
 GameObject:
   m_ObjectHideFlags: 0
@@ -17497,6 +17502,11 @@ PrefabInstance:
       propertyPath: m_ApplyActiveColorSpace
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6618136002975977339, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
+        type: 3}
+      propertyPath: TriggerModule.primitives.Array.data[0]
+      value: 
+      objectReference: {fileID: 1931466834}
     - target: {fileID: 7358813258982365685, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -18433,6 +18443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "da\xF1o": 2147483647
   indice: 1
+  intervalo: 0
 --- !u!4 &1649291403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122894445133215757, guid: 810d5d54ee7a3dd4f9474817939f161c,
@@ -18742,6 +18753,11 @@ PrefabInstance:
       propertyPath: m_ApplyActiveColorSpace
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6618136002975977339, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
+        type: 3}
+      propertyPath: TriggerModule.primitives.Array.data[0]
+      value: 
+      objectReference: {fileID: 1931466834}
     - target: {fileID: 7358813258982365685, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19990,6 +20006,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.alignToDirection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618136002975977339, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
+        type: 3}
+      propertyPath: TriggerModule.primitives.Array.data[0]
+      value: 
+      objectReference: {fileID: 1931466834}
+    - target: {fileID: 6969064443947437217, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
+        type: 3}
+      propertyPath: intervalo
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7358813258982365685, guid: 78bc6abd0e5ce9848a9c3e61e3cf8d61,
         type: 3}
@@ -22669,7 +22695,7 @@ PrefabInstance:
     - target: {fileID: 7578510072180623945, guid: 994234891e4b4424dba9141b3d876665,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9175620204027690346, guid: 994234891e4b4424dba9141b3d876665,
         type: 3}
