@@ -13,7 +13,10 @@ public class Trampa : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Activar.Invoke(daño, indice);
-        gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("Jugador"))
+        {
+            Activar.Invoke(daño, indice);
+            gameObject.SetActive(false);
+        }
     }
 }
