@@ -308,7 +308,10 @@ public class ControlJugador : MonoBehaviour
 
     void Trampas(int daño, int indice)
     {
-        vidaActual -= daño;
+        if (indice == 0)
+            vidaActual -= daño;
+        else if (indice == 1 && !mutacion[1])
+            vidaActual -= daño;
     }
 
     private float AjustarDistanciaCamara(Vector3 origen, Vector3 direccion, float distanciaMaxima, float distanciaMinima)

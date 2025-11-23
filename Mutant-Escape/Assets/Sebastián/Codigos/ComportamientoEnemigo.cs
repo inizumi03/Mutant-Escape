@@ -20,6 +20,7 @@ public class ComportamientoEnemigo : MonoBehaviour
     public float interbaloDisparo;
     public float desvio;
     public float correcionDeDesbio;
+    public GameObject arma;
     int balasDisparadas;
     float tiempoEspera;
 
@@ -63,10 +64,13 @@ public class ComportamientoEnemigo : MonoBehaviour
         timer = 1 * Random.Range(0.0f, 1.0f);
 
         vidaActual = vida;
+
+        arma.SetActive(false);
     }
 
     private void Update()
     {
+        arma.SetActive(jugadorDetectado);
         timer -= Time.deltaTime;
 
         CorrejirDesvio();
@@ -149,7 +153,7 @@ public class ComportamientoEnemigo : MonoBehaviour
             agent.stoppingDistance = 0;
 
         agent.SetDestination(jugador.position);
-        forma.transform.LookAt(jugador);
+        forma.transform.LookAt(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
     }
 
     private void OnTriggerEnter(Collider other)
