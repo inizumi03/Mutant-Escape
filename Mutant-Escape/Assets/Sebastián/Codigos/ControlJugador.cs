@@ -19,6 +19,8 @@ public class ControlJugador : MonoBehaviour
     public float sencibilidadCamara = 5f;
     private float rotacionYcam, rotacionXcam;
     public float limiteInferiro, limiteSuperior;
+    public float distanciaCamaraMinimo;
+    public float velocidadDecorreccion = 10f;
 
     [Header("Funcionamiento Del Arma")]
     public GameObject bala;
@@ -50,7 +52,7 @@ public class ControlJugador : MonoBehaviour
     public string aniDisparando;
 
     private Rigidbody rb;
-    float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN;
+    float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, distanciaCamaraReal;
     int vidaActual;
 
     void Awake()
@@ -71,6 +73,7 @@ public class ControlJugador : MonoBehaviour
         vidaActual = vida;
         barraVida.maxValue = vida;
         barraVida.value = vidaActual;
+        distanciaCamaraReal = distanciaCamara;
 
         Trampa.Activar += Trampas;
     }
@@ -111,7 +114,9 @@ public class ControlJugador : MonoBehaviour
         rotacionXcam = Mathf.Clamp(rotacionXcam, -limiteSuperior, limiteInferiro);
 
         Quaternion rotacionCamara = Quaternion.Euler(rotacionXcam, rotacionYcam, 0f);
-        Vector3 offset = rotacionCamara * new Vector3(0f, 0f, -distanciaCamara);
+        Vector3 direccionCamara = rotacionCamara * Vector3.back;
+        float distanciaAjustada = AjustarDistanciaCamara(transform.position, direccionCamara, distanciaCamaraReal, distanciaCamaraMinimo);
+        Vector3 offset = direccionCamara * distanciaAjustada;
 
         transformCamara.position = transform.position + offset;
         transformCamara.LookAt(transform.position);
@@ -304,5 +309,18 @@ public class ControlJugador : MonoBehaviour
     void Trampas(int daño, int indice)
     {
         vidaActual -= daño;
+    }
+
+    private float AjustarDistanciaCamara(Vector3 origen, Vector3 direccion, float distanciaMaxima, float distanciaMinima)
+    {
+        RaycastHit hit;
+
+        if (Physics.Linecast(origen, origen + direccion * distanciaMaxima, out hit))
+        {
+            float distanciaImpacto = Vector3.Distance(origen, hit.point);
+            return Mathf.Clamp(distanciaImpacto, distanciaMinima, distanciaMaxima);
+        }
+
+        return distanciaMaxima;
     }
 }
