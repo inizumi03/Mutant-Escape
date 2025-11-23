@@ -10,6 +10,7 @@ TagManager:
   - Jugador
   - Enemigo
   - Bala Enemigo
+  - Municion
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Mutageno 2
   - Jugador
   - Enemigo
-  - 
+  - Municion
   - 
   - 
   - 

@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,9 +26,13 @@ public class ControlJugador : MonoBehaviour
     [Header("Funcionamiento Del Arma")]
     public GameObject bala;
     public Transform mira;
-    public int municion, recarga;
+    public int recarga;
     public float cadencia;
     private float espera;
+    public GameObject imagenMira;
+    public TextMeshProUGUI contadorBalas;
+    public GameObject textoRecargar;
+    int municion;
 
     [Header("Efectos Mutageno 1")]
     public float alteracionVelocidadMutUno;
@@ -44,6 +49,7 @@ public class ControlJugador : MonoBehaviour
     public GameObject CanvasDerrota;
     public bool[] mutacion;
     public float[] tempMut;
+    public GameObject[] particulasMutageno;
 
     [Header("Animacion")]
     public Animator animator;
@@ -74,6 +80,8 @@ public class ControlJugador : MonoBehaviour
         barraVida.maxValue = vida;
         barraVida.value = vidaActual;
         distanciaCamaraReal = distanciaCamara;
+        ActivacionDeParticulasMutageno();
+        municion = recarga;
 
         Trampa.Activar += Trampas;
     }
@@ -91,7 +99,6 @@ public class ControlJugador : MonoBehaviour
         Gatillos();
         Disparar();
         Apuntar();
-        Recargar();
 
         Saltar();
 
@@ -100,6 +107,8 @@ public class ControlJugador : MonoBehaviour
         ControlDeAnimacion();
 
         TemporizadorDeMutacion();
+        ActivacionDeParticulasMutageno();
+        ControlDeMunicion();
 
         barraVida.value = vidaActual;
     }
@@ -170,9 +179,16 @@ public class ControlJugador : MonoBehaviour
 
     public void Apuntar()
     {
-        if (Input.GetButton("Fire2") || gatilloL > 0)
+        if (imagenMira != null)
         {
-
+            if (Input.GetButton("Fire2") || gatilloL > 0)
+            {
+                imagenMira.SetActive(true);
+            }
+            else
+            {
+                imagenMira.SetActive(false);
+            }
         }
     }
 
@@ -229,6 +245,11 @@ public class ControlJugador : MonoBehaviour
         {
             vidaActual -= 5;
         }
+        else if (other.gameObject.CompareTag("Municion"))
+        {
+            other.gameObject.SetActive(false);
+            municion = recarga;
+        }
     }
 
     void Alteraciones(float valor, float escala = 0, bool negativo = false)
@@ -268,12 +289,6 @@ public class ControlJugador : MonoBehaviour
                 Alteraciones(alteracionVelocidadMutDos, .5f, true);
             }
         }
-    }
-
-    void Recargar()
-    {
-        if (Input.GetButton("Recargar"))
-            municion = recarga;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -325,5 +340,21 @@ public class ControlJugador : MonoBehaviour
         }
 
         return distanciaMaxima;
+    }
+
+    void ActivacionDeParticulasMutageno()
+    {
+        particulasMutageno[0].SetActive(mutacion[0]);
+        particulasMutageno[1].SetActive(mutacion[1]);
+    }
+
+    void ControlDeMunicion()
+    {
+        contadorBalas.text = municion.ToString();
+
+        if (municion == 0 && textoRecargar != null)
+            textoRecargar.SetActive(true);
+        else if (textoRecargar != null)
+            textoRecargar.SetActive(false);
     }
 }

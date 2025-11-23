@@ -16,7 +16,8 @@ public class Trampa : MonoBehaviour
         if (other.gameObject.CompareTag("Jugador"))
         {
             Activar.Invoke(daño, indice);
-            gameObject.SetActive(false);
+            if (indice != 1)
+                gameObject.SetActive(false);
         }
     }
 }

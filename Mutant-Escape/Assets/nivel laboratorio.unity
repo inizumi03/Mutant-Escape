@@ -7817,7 +7817,7 @@ PrefabInstance:
     - target: {fileID: 2851222659508148198, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
       propertyPath: limiteSuperior
-      value: 35
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2851222659508148198, guid: fa93bff37ad685044841ac4ce52ac1ec,
         type: 3}
@@ -15075,6 +15075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Generacion Enemigos
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578510072180623945, guid: 994234891e4b4424dba9141b3d876665,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9175620204027690346, guid: 994234891e4b4424dba9141b3d876665,
         type: 3}
