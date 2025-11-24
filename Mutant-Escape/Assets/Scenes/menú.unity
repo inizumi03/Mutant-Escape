@@ -1901,7 +1901,6 @@ MonoBehaviour:
   m_text: 'Abril Correa, Agustin Abrego, Sebastian lorenzo cupeiro
 
 
-
     Assets:
 
 
@@ -1914,6 +1913,17 @@ MonoBehaviour:
     dafont.com/es/antone.font
 
     Mixamo
+
+    assetstore.unity.com/violet-themed-ui
+
+    assetstore.unity.com/water-stylized-shader-orto-perspective-camera
+
+    sketchfab.com/3d-models/drainage-grate
+
+    sketchfab.com/3d-models/9mm-bullet
+
+    
+
 
 '
   m_isRightToLeft: 0
@@ -1979,7 +1989,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -33.679214, y: 0, z: -34.322342, w: -58.551117}
+  m_margin: {x: -83.187164, y: -13.227314, z: -81.940704, w: -65.73165}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3096,7 +3106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 368}
+  m_AnchoredPosition: {x: 0, y: 398}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2060001470
