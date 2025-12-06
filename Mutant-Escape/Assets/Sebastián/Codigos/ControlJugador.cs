@@ -174,7 +174,7 @@ public class ControlJugador : MonoBehaviour
 
     bool ComprobacioSuelo()
     {
-        return Physics.Raycast(jugador.position, Vector3.down, 1.55f);
+        return Physics.Raycast(jugador.position, Vector3.down, transform.localScale.y / 2 + .05f);
     }
 
     public void Apuntar()
@@ -229,7 +229,7 @@ public class ControlJugador : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Mutageno 1") && mutacion[0] == false)
         {
-            Alteraciones(alteracionVelocidadMutUno, .5f, false);
+            Alteraciones(alteracionVelocidadMutUno, .5f);
             mutacion[0] = true;
             tempMut[0] = tiempoDeActivacionMutUno;
             other.gameObject.SetActive(false);
