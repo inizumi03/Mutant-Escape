@@ -61,6 +61,9 @@ public class ControlJugador : MonoBehaviour
     float gatilloL, gatilloR, alterecionVelocidadP, alteracionVelocidadN, distanciaCamaraReal;
     int vidaActual;
 
+    private Vector3 ultimaPosicion;
+    private float velocidadPlano;
+
     void Awake()
     {
         Time.timeScale = 1;
@@ -93,7 +96,6 @@ public class ControlJugador : MonoBehaviour
 
     void Update()
     {
-        MovimientoJugador();
         MovimientoCamara();
 
         Gatillos();
@@ -111,6 +113,17 @@ public class ControlJugador : MonoBehaviour
         ControlDeMunicion();
 
         barraVida.value = vidaActual;
+        ultimaPosicion = rb.position;
+    }
+
+    private void FixedUpdate()
+    {
+        MovimientoJugador();
+        // Derivar velocidad en plano XZ
+        Vector3 delta = rb.position - ultimaPosicion;
+        Vector3 deltaPlano = new Vector3(delta.x, 0f, delta.z);
+        velocidadPlano = deltaPlano.magnitude / Time.fixedDeltaTime;
+        ultimaPosicion = rb.position;
     }
 
     private void MovimientoCamara()
@@ -145,13 +158,15 @@ public class ControlJugador : MonoBehaviour
         Quaternion rotacionJugador = Quaternion.Euler(0f, rotacionYcam, 0f);
         Vector3 direccion = rotacionJugador * direccionInput;
 
-        Vector3 velocidadDireccionada = direccion * ((velocidad * alteracionVelocidadN) * alterecionVelocidadP);
-        rb.velocity = new Vector3(velocidadDireccionada.x, rb.velocity.y, velocidadDireccionada.z);
+        float velocidadFinal = velocidad * alteracionVelocidadN * alterecionVelocidadP;
+        Vector3 desplazamiento = direccion * velocidadFinal * Time.fixedDeltaTime;
+
+        rb.MovePosition(rb.position + desplazamiento);
 
         if (direccionInput.sqrMagnitude > 0.01f && !(gatilloR > 0 || Input.GetButton("Fire1")))
         {
             Quaternion anguloObjetivo = Quaternion.LookRotation(direccion, Vector3.up);
-            Quaternion rotacion = Quaternion.Slerp(rb.rotation, anguloObjetivo, velocidadRotacion * Time.deltaTime);
+            Quaternion rotacion = Quaternion.Slerp(rb.rotation, anguloObjetivo, velocidadRotacion * Time.fixedDeltaTime);
             rb.MoveRotation(rotacion);
         }
     }
@@ -316,7 +331,7 @@ public class ControlJugador : MonoBehaviour
 
     void ControlDeAnimacion()
     {
-        animator.SetFloat(aniVelocidadXZ, math.abs(rb.velocity.x) + math.abs(rb.velocity.z));
+        animator.SetFloat(aniVelocidadXZ, velocidadPlano);
         animator.SetFloat(aniVelocidadY, math.abs(rb.velocity.y));
         animator.SetBool(aniDisparando, gatilloR > 0 || Input.GetButton("Fire1"));
     }
