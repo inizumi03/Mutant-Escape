@@ -1922,7 +1922,7 @@ MonoBehaviour:
 
     sketchfab.com/3d-models/9mm-bullet
 
-    
+
 
 
 '
@@ -2891,7 +2891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 93}
+  m_AnchoredPosition: {x: 0, y: 137}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971615090
@@ -2914,9 +2914,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD \u2013 Move through the chaos.\n\nLeft Click \u2013 Shoot.\n\nE \u2013
-    Reload your weapon.\n\nSpace \u2013 Jump.\n\nPower-Ups \u2013 Temporary mutations
-    with special effects.\n\nAvoid traps and enemies. Escape the lab alive."
+  m_text: "WASD \u2013 Move through the chaos.\n\nLeft Click \u2013 Shoot.\n\nRight
+    click \u2013 Aim.\n\nE \u2013 Reload your weapon.\n\nSpace \u2013 Jump.\n\nPower-Ups
+    \u2013 Temporary mutations with special effects.\n\nAvoid traps and enemies.
+    Escape the lab alive."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39a085e4ec6d2844e9d9fac6d7b71116, type: 2}
   m_sharedMaterial: {fileID: 2259850989645633956, guid: 39a085e4ec6d2844e9d9fac6d7b71116,
@@ -2980,7 +2981,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -33.679214, y: 0, z: -34.322342, w: -58.551117}
+  m_margin: {x: -33.679214, y: 0, z: -34.322342, w: -75.981155}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
